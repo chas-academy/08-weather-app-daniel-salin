@@ -1,8 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {  Route } from "react-router-dom";
 
 import TodaysWeather from "../TodaysWeather/TodaysWeather";
 import Prognosis from "../Prognosis/Prognosis";
+import WeatherIcon from "../WeatherIcon/WeatherIcon";
 
 // HOC
 import withApiCalls from "../../HOC/withApiCalls";
@@ -44,11 +45,10 @@ class Main extends React.Component {
                 </div>
             )
          } else {
-    
             return (
                 <main>
-                    <div className="jumbotron"> 
-                        <h1>{weather.currently.summary}</h1>
+                    <div className="container bg-dark"> 
+                        <WeatherIcon icon={weather.currently.icon}/>
                     </div>
                     <div className="container">
                         <Route exact path="/" component={ TodaysWeather } />
@@ -60,3 +60,7 @@ class Main extends React.Component {
 }
 
 export default withApiCalls(Main);
+
+
+
+  
