@@ -1,35 +1,50 @@
 import React from "react";
 
-export default function withApiCalls(WrappedComponent) {
-
-    const getMyPosition = () => {
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        };
-        const success = position => {
-            return position.coords;
-        };
-
-        const error = error => {
-            return error
-        };
-
-        return navigator.geolocation.getCurrentPosition(success, error, options);
+const withApiCalls = (WrappedComponent) => {
+    return class extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                position: ""
+        }
+        this.getMyPosition = this.getMyPosition.bind(this);
     }
+        componentDidMount() {
+            this.getMyPosition();
+        }
 
-    const UpdateCoordinates = () => {
-        this.setState({
-            position: this.getMyPosition()
-        });
-    };
+        getMyPosition() {
+            const options = {
+                enableHighAccuracy: false,
+                timeout: 5000,
+                maximumAge: 0
+              };
 
-    return props => ( 
-    <WrappedComponent 
-        getMyPosition={getMyPosition} 
-        UpdateCoordinates={UpdateCoordinates}
-        {...props}
-        />
-    )
+            if (window.navigator.geolocation) {
+                window.navigator.geolocation.getCurrentPosition(position => {
+                this.setState({
+                    position: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    }
+                })
+              }, (error) => {
+                this.setState({ position: "NA"})
+              }, options)
+            }
+        
+          }
+
+        render() {
+            const { position } = this.state;
+            return ( <
+                WrappedComponent 
+                {...this.props}
+                position= {position}
+                />
+            )
+        }
+    }
 }
+
+export default withApiCalls;
