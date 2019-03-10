@@ -12,12 +12,21 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            weather: ""
+            weather: "",
+            temperatureUnit: "celsius"
         }
     }
-      
+
+    convertTemperature = () => {
+        (this.state.temperatureUnit === "celsius") ? 
+        this.setState({...this.state, temperatureUnit: "farenheit"})
+        :
+        this.setState({...this.state, temperatureUnit: "celsius"})
+    }
+
     render() {
         const {position, weather} = this.props;
+        const { temperatureUnit } = this.state;
         if(!window.navigator) {
             return (
                 <div className="container bg-danger text-light">
@@ -45,10 +54,25 @@ class Main extends React.Component {
                 </div>
             )
          } else {
+             const { currently } = weather;
+             
             return (
                 <main>
-                    <div className="container bg-dark"> 
-                        <WeatherIcon icon={weather.currently.icon}/>
+                    <div className="container p-3 bg-dark text-light"> 
+                    <div className="row">
+                        <div className="col-md-6 col-sm-12">
+                            <ul className="text-center" style={{listStyleType:"none"}}>
+                                <li><button className="btn btn-sm" onClick={this.convertTemperature}>Switch temperature unit</button></li>
+                                <li>Summary: {currently.summary}</li>
+                                {temperatureUnit === "celsius" ? <li>Temperature: {currently.temperature}°C</li> : <li>Temperature: {currently.temperature* 1.8 + 32}°F</li>}
+                                <li>Wind Speed: {currently.windSpeed} m/s</li>
+                                <li>Humidity: {currently.humidity}</li>
+                            </ul>
+                        </div>
+                        <div className="col-md-6 col-sm-12">
+                            <WeatherIcon icon={currently.icon}/>
+                        </div>
+                    </div>
                     </div>
                     <div className="container">
                         <Route exact path="/" component={ TodaysWeather } />
@@ -60,7 +84,3 @@ class Main extends React.Component {
 }
 
 export default withApiCalls(Main);
-
-
-
-  
