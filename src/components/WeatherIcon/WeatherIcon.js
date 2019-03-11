@@ -39,7 +39,11 @@ export default class TodaysWeather extends React.Component {
   render() {
     return (
       <div className="App">
+        { (this.props.size === "large") ?
         <canvas ref={this.ref} width="128" height="128" />
+        :
+        <canvas ref={this.ref} width="64" height="64" />
+        }
       </div>
     );
   }

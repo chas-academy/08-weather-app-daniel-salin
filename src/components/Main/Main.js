@@ -70,7 +70,7 @@ class Main extends React.Component {
                             </ul>
                         </div>
                         <div className="col-md-6 col-sm-12">
-                            <WeatherIcon icon={currently.icon}/>
+                            <WeatherIcon size="large" icon={currently.icon}/>
                         </div>
                     </div>
                     </div>
