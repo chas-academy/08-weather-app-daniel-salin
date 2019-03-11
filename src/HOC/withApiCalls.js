@@ -24,14 +24,15 @@ const withApiCalls = (WrappedComponent) => {
         getMyPosition() {
             const options = {
                 enableHighAccuracy: false,
-                timeout: 5000,
+                timeout: 6000,
                 maximumAge: 0
               };
 
             if (window.navigator.geolocation) {
                 window.navigator.geolocation.getCurrentPosition(position => {
                 this.setState({
-                    ...this.state, position: {
+                    ...this.state, 
+                    position: {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     }
@@ -39,7 +40,8 @@ const withApiCalls = (WrappedComponent) => {
                 this.getWeather();
               }, (error) => {
                 this.setState({ 
-                    ...this.state, position: "NA"
+                    ...this.state, 
+                    position: "NA"
                 })
               }, options)
             }

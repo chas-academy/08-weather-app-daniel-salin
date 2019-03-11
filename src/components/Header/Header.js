@@ -7,8 +7,9 @@ export default function Header(props) {
         <header className="jumbotron">
             <h1>Weather App - Main Component</h1>
                 <ul>
-                    <li><Link to="/">Today's Weather</Link></li>
-                    <li><Link to="/prognosis">Prognosis</Link></li>
+                    <li><Link to="/">Current Weather</Link></li>
+                    <li><Link to="/week">Prognosis- week</Link></li>
+                    <li><Link to="/today">Prognosis- today</Link></li>
                 </ul>
         </header>
     )
