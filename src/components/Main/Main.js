@@ -59,6 +59,7 @@ class Main extends React.Component {
             return (
                 <main>
                     <div className="container p-3 bg-dark text-light"> 
+                    <h2 className="text-center">Current Weather</h2>
                     <div className="row">
                         <div className="col-md-6 col-sm-12">
                             <ul className="text-center" style={{listStyleType:"none"}}>
@@ -74,7 +75,7 @@ class Main extends React.Component {
                         </div>
                     </div>
                     </div>
-                    <div className="container">
+                    <div>
                         <Route exact path="/" component={ TodaysWeather } />
                         <Route path="/prognosis"
                             render={() => <Prognosis weather={weather}/>}

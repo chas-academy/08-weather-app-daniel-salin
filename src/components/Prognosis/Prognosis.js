@@ -6,8 +6,8 @@ export default function Prognosis(props) {
     console.log(props.weather.daily);
     const { data } = props.weather.daily;
     return (
-        <div className="jumbotron bg-secondary">
-            <h4>{props.weather.daily.summary}</h4>
+        <div className="container p-3 bg-secondary">
+            <h4 className="container p-2 bg-warning text-center">{props.weather.daily.summary}</h4>
             <div className="row">
                 {data.map(day => {
                     const currentDate = new Date(day.time*1000).toLocaleDateString(navigator.language,{
@@ -25,12 +25,14 @@ export default function Prognosis(props) {
                         minute:'2-digit'
                     });
                     return (
-                        <div className="col-3 p-3 m-1 bg-info">
+                        <div className="col-lg-3 col-md-6 col-sm-12"> 
+                        <div style={{minHeight:"270px"}} className="card w-100 m-1 bg-info p-2">
                             <h5>{currentDate}</h5>
-                            <h6>{day.summary}</h6>
+                            <p>{day.summary}</p>
                             <p>Sunrise: {sunriseTime}</p>
                             <p>Sunset: {sunsetTime}</p>
                             <WeatherIcon size="small" icon={day.icon}/>
+                        </div>
                         </div>
                     )
                 })}
