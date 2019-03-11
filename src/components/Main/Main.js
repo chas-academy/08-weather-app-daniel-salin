@@ -76,7 +76,9 @@ class Main extends React.Component {
                     </div>
                     <div className="container">
                         <Route exact path="/" component={ TodaysWeather } />
-                        <Route path="/prognosis" component={ Prognosis } />
+                        <Route path="/prognosis"
+                            render={() => <Prognosis weather={weather}/>}
+                            />
                     </div>
             </main>
         )}
