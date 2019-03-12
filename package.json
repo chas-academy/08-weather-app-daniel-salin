@@ -2,7 +2,10 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/daniel-salin/weather-app.git",
   "dependencies": {
+    "dotenv": "^6.2.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
@@ -12,8 +15,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "npm run remotePublish && gh-pages -d build && npm run remoteRestore",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "remotePublish": "git remote set-url origin https://github.com/daniel-salin/weather-app.git",
+    "remoteRestore": "git remote set-url origin https://github.com/chas-academy/08-weather-app-daniel-salin.git"
   },
   "eslintConfig": {
     "extends": "react-app"

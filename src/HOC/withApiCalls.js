@@ -6,7 +6,8 @@ const withApiCalls = (WrappedComponent) => {
             super(props);
             this.state = {
                 position: "",
-                weather: ""
+                weatherSI: "",
+                weatherUS: ""
         }
         this.getMyPosition = this.getMyPosition.bind(this);
         this.getWeather = this.getWeather.bind(this);
@@ -37,7 +38,9 @@ const withApiCalls = (WrappedComponent) => {
                         longitude: position.coords.longitude
                     }
                 });
-                this.getWeather();
+                console.log("position: ", this.state.position);
+                this.getWeather("units=si");
+                this.getWeather("units=us");
               }, (error) => {
                 this.setState({ 
                     ...this.state, 
@@ -53,7 +56,7 @@ const withApiCalls = (WrappedComponent) => {
         -------------------------------------- 
         */ 
         
-        getWeather = () => {
+        getWeather = (selectedUnit) => {
             // API call options
             // Using a proxy to handle CORS issues while in dev-mode
             const devCorsProxy = "https://cors-anywhere.herokuapp.com";
@@ -62,9 +65,10 @@ const withApiCalls = (WrappedComponent) => {
             const darkskyApiKey = process.env.REACT_APP_DARKSKY_KEY;
             const latitude = this.state.position.latitude;
             const longitude = this.state.position.longitude;
+            const units = selectedUnit;
 
             //fetch data
-            const url = `${devCorsProxy}/${baseUrl}/${parameters}/${darkskyApiKey}/${latitude},${longitude}`;
+            const url = `${devCorsProxy}/${baseUrl}/${parameters}/${darkskyApiKey}/${latitude},${longitude}?${units}`;
             fetch(url).then(response => {
                 if(response.ok) {
                     return response.json();
@@ -72,19 +76,23 @@ const withApiCalls = (WrappedComponent) => {
                     throw new Error('Connection to DarkSky API failed');
                 }
             })
-            .then(data => this.setState({
-                ...this.state, weather: data
-            }))
+            .then(data => {
+                (units === "units=si") 
+                ? this.setState({ ...this.state, weatherSI: data})
+                : this.setState({ ...this.state, weatherUS: data}) 
+                console.log(this.state);
+        })
             .catch(error => console.log("There was an error: ", error.message));
         } 
 
         render() {
-            const { position, weather } = this.state;
+            const { position, weatherSI, weatherUS } = this.state;
             return ( 
             <WrappedComponent 
                 {...this.props}
                 position= {position}
-                weather= {weather}
+                weatherSI= {weatherSI}
+                weatherUS= {weatherUS}
                 />
             )
         }

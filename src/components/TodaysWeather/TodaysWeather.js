@@ -3,7 +3,7 @@ import React from "react";
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
 
 export default function TodaysWeather(props) {
-    const { weather } = props;
+    const { weather, unitType } = props;
 
     return (
         <div className="container p-3 bg-secondary text-light">
@@ -34,10 +34,12 @@ export default function TodaysWeather(props) {
                                 </td>
                                 <td><WeatherIcon size="small" icon={hour.icon} /></td>
                                 <td>{hour.summary}</td>
-                                <td>{hour.temperature}</td>
-                                <td>{hour.apparentTemperature}</td>
-                                <td>{hour.humidity}</td>
+                                <td>{hour.temperature}{(unitType==="Metric")? "°C" : "°F"}</td>
+                                <td>{hour.apparentTemperature}{(unitType==="Metric")? "°C" : "°F"}</td>
+                                <td>{(hour.humidity*100).toFixed(0)}%</td>
                             </tr>);
+                        } else {
+                            return ""
                         }
                     })
                     }

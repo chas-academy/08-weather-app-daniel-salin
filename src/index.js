@@ -5,8 +5,10 @@ import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from '../node_modules/react-router-dom';
 
+require('dotenv').config();
+
 ReactDOM.render(
-(<BrowserRouter>
+(<BrowserRouter basename={process.env.PUBLIC_URL}>
     <App />
 </BrowserRouter>), document.getElementById('root'));
 
