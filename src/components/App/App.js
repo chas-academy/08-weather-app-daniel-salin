@@ -6,7 +6,6 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 
 import withApiCalls from "../../HOC/withApiCalls";
-import { SlowBuffer } from 'buffer';
 
 class App extends Component {
   constructor(props) {

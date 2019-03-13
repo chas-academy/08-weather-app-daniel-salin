@@ -38,7 +38,6 @@ const withApiCalls = (WrappedComponent) => {
                         longitude: position.coords.longitude
                     }
                 });
-                console.log("position: ", this.state.position);
                 this.getWeather("units=si");
                 this.getWeather("units=us");
               }, (error) => {
@@ -79,7 +78,6 @@ const withApiCalls = (WrappedComponent) => {
                 (units === "units=si") 
                 ? this.setState({ ...this.state, weatherSI: data})
                 : this.setState({ ...this.state, weatherUS: data}) 
-                console.log(this.state);
         })
             .catch(error => console.log("There was an error: ", error.message));
         } 

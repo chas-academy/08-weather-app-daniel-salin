@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>U08- Weather App - Daniel Salin</h1>
+
+Link to deployed version: <a href="https://daniel-salin.github.io/weather-app">https://daniel-salin.github.io/weather-app/</a>
 
 ## Available Scripts
 
