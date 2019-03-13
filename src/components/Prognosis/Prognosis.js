@@ -6,9 +6,9 @@ export default function Prognosis(props) {
     const { data, summary } = props.weather;
     const  { unitType } = props;
     return (
-        <div className="container p-3 bg-secondary">
-            <h4 className="container p-2 bg-warning text-center">{summary}</h4>
-            <div className="row">
+        <div className="bg-secondary">
+            <h4 className="p-2 bg-warning text-center">{summary}</h4>
+            <div className="row p-3">
                 {data.map(day => {
                     const currentDate = new Date(day.time*1000).toLocaleDateString(navigator.language,{
                         weekday: 'long',

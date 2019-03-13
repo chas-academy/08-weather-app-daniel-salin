@@ -6,9 +6,9 @@ export default function TodaysWeather(props) {
     const { weather, unitType } = props;
 
     return (
-        <div className="container p-3 bg-secondary text-light">
-             <h4 className="container p-2 bg-warning text-dark text-center">{weather.summary}</h4>
-            <table className="table">
+        <div className="bg-secondary text-light">
+             <h4 className="p-2 bg-warning text-dark text-center">{weather.summary}</h4>
+            <table className="table p-3">
                 <thead>
                     <tr className="text-center">
                         <th scope="col">Hour</th>

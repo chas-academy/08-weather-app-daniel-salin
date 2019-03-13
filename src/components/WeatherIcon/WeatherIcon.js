@@ -40,7 +40,7 @@ export default class TodaysWeather extends React.Component {
     return (
       <div className="App">
         { (this.props.size === "large") ?
-        <canvas ref={this.ref} width="128" height="128" />
+        <canvas ref={this.ref} width="100" height="100" />
         :
         <canvas ref={this.ref} width="64" height="64" />
         }
@@ -50,7 +50,7 @@ export default class TodaysWeather extends React.Component {
 
   componentDidMount() {
     const selectedIcon = this.selectIcon(this.props.icon);
-    const skycons = new Skycons({ color: "red" });
+    const skycons = new Skycons ({ color: "white" });
     skycons.add(this.ref.current, selectedIcon);
     skycons.play();
   }

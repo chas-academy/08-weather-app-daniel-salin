@@ -4,6 +4,7 @@ import './App.css';
 // Components
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer"
 
 import withApiCalls from "../../HOC/withApiCalls";
 
@@ -78,6 +79,7 @@ convertUnits = () => {
           <div>
             <Header unitType={unitType} convertUnits={this.convertUnits}/>
             <Main unitType={unitType} weather={weather}/>
+            <Footer />
         </div>
     )}}
 }

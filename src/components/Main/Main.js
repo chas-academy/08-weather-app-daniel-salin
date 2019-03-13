@@ -10,7 +10,7 @@ class Main extends React.Component {
     render() {
         const { weather, unitType } = this.props;
             return (
-                <main className="row">
+                <main>
                     <Switch >
                         <Route exact path="/current" render={() => <Current unitType={unitType} weather={weather.currently}/>}/>
                         <Route path="/week" render={() => <Prognosis unitType={unitType} weather={weather.daily}/>}/>
