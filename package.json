@@ -2,7 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/daniel-salin/weather-app.git",
+  "homepage": "https://daniel-salin.github.io/weather-app",
   "dependencies": {
     "dotenv": "^6.2.0",
     "gh-pages": "^2.0.1",

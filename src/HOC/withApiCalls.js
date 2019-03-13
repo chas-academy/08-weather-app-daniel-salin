@@ -58,7 +58,6 @@ const withApiCalls = (WrappedComponent) => {
         
         getWeather = (selectedUnit) => {
             // API call options
-            // Using a proxy to handle CORS issues while in dev-mode
             const devCorsProxy = "https://cors-anywhere.herokuapp.com";
             const baseUrl = "https://api.darksky.net";
             const parameters = "forecast";
