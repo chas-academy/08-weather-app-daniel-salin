@@ -1,15 +1,18 @@
 import React from "react";
 
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
+import CurrentWeather from "../CurrentWeather/CurrentWeather";
 
-export default function Prognosis(props) {
-    const { data, summary } = props.weather;
+export default function PrognosisWeekly(props) {
+    const { daily, currently } = props.weather;
     const  { unitType } = props;
     return (
+        <section>
+        <CurrentWeather unitType={unitType} weather={currently}/>    
         <div className="bg-secondary">
-            <h4 className="p-2 bg-warning text-center">{summary}</h4>
+            <h4 className="p-2 bg-warning text-center">{daily.summary}</h4>
             <div className="row p-3">
-                {data.map(day => {
+                {daily.data.map(day => {
                     const currentDate = new Date(day.time*1000).toLocaleDateString(navigator.language,{
                         weekday: 'long',
                         year: 'numeric',
@@ -41,5 +44,6 @@ export default function Prognosis(props) {
                 })}
             </div>
         </div>
+        </section>
     )
 }

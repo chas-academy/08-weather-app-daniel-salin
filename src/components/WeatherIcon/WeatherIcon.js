@@ -2,7 +2,7 @@ import React from "react";
 
 const Skycons = require("skycons")(window);
 
-export default class TodaysWeather extends React.Component {
+export default class WeatherIcon extends React.Component {
   constructor(props) {
     super(props);
 

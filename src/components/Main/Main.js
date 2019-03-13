@@ -1,9 +1,8 @@
 import React from "react";
 import {  Switch, Route } from "react-router-dom";
 
-import TodaysWeather from "../TodaysWeather/TodaysWeather";
-import Prognosis from "../Prognosis/Prognosis";
-import Current from "../Current/Current";
+import PrognosisDaily from "../PrognosisDaily/PrognosisDaily";
+import PrognosisWeekly from "../PrognosisWeekly/PrognosisWeekly";
 
 class Main extends React.Component {
 
@@ -12,9 +11,9 @@ class Main extends React.Component {
             return (
                 <main>
                     <Switch >
-                        <Route exact path="/current" render={() => <Current unitType={unitType} weather={weather.currently}/>}/>
-                        <Route path="/week" render={() => <Prognosis unitType={unitType} weather={weather.daily}/>}/>
-                        <Route path="/today" render={() => <TodaysWeather unitType={unitType} weather={weather.hourly}/>}/>
+                        <Route exact path="/" render={() => <PrognosisDaily unitType={unitType} weather={weather}/>}/>
+                        <Route path="/today" render={() => <PrognosisDaily unitType={unitType} weather={weather}/>}/>
+                        <Route path="/week" render={() => <PrognosisWeekly unitType={unitType} weather={weather}/>}/>
                     </Switch>
             </main>
         )

@@ -12,9 +12,6 @@ export default function Header(props) {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item px-3 pt-2">
-                            <NavLink to="/current" className="text-light" activeStyle={{ fontWeight: "bold", color: "red"}}>Current Weather</NavLink>
-                        </li>
-                        <li className="nav-item px-3 pt-2">
                             <NavLink to="/today" className="text-light" activeStyle={{ fontWeight: "bold", color: "red"}}>Prognosis- today</NavLink>
                         </li>
                         <li className="nav-item px-3 pt-2">

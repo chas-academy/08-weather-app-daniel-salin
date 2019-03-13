@@ -1,13 +1,16 @@
 import React from "react";
 
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
+import CurrentWeather from "../CurrentWeather/CurrentWeather";
 
-export default function TodaysWeather(props) {
+export default function PrognosisDaily(props) {
     const { weather, unitType } = props;
 
     return (
+        <section>
+        <CurrentWeather unitType={unitType} weather={weather.currently}/>
         <div className="bg-secondary text-light">
-             <h4 className="p-2 bg-warning text-dark text-center">{weather.summary}</h4>
+             <h4 className="p-2 bg-warning text-dark text-center">{weather.hourly.summary}</h4>
             <table className="table p-3">
                 <thead>
                     <tr className="text-center">
@@ -20,8 +23,8 @@ export default function TodaysWeather(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    { weather.data.map(hour => {
-                        if (weather.data.indexOf(hour)%3 === 0 && weather.data.indexOf(hour) < 25) {
+                    { weather.hourly.data.map(hour => {
+                        if (weather.hourly.data.indexOf(hour)%3 === 0 && weather.hourly.data.indexOf(hour) < 25) {
                             return (
                             <tr className="text-center">
                                 <td >
@@ -46,6 +49,7 @@ export default function TodaysWeather(props) {
                 </tbody>
             </table>
         </div>
+        </section>
     )
     
 }
