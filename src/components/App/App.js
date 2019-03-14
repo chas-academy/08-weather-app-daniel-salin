@@ -12,36 +12,43 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        unitType: "",
-        weather: ""
+      unitType: "",
+      weather: ""
     }
-}
+  }
 
-componentDidUpdate(prevProps) {
-  if (this.props.weatherSI !== prevProps.weatherSI) {
+  componentDidUpdate(prevProps) {
+    if (this.props.weatherSI !== prevProps.weatherSI) {
+      this.setState({
+        ...this.state,
+        weather: this.props.weatherSI,
+        unitType: "Metric",
+        queryLocationHits: this.props.queryLocationHits
+      });
+    }
+  }
+
+  convertUnits = () => {
+    (this.state.unitType === "Metric") ?
     this.setState({
-      ...this.state, 
+      ...this.state,
+      weather: this.props.weatherUS,
+      unitType: "American"
+    }): this.setState({
+      ...this.state,
       weather: this.props.weatherSI,
       unitType: "Metric"
-    }); 
+    })
   }
-}
-
-convertUnits = () => {
-  (this.state.unitType === "Metric") 
-  ? this.setState({
-      ...this.state, weather: this.props.weatherUS, 
-      unitType: "American"
-  })
-  : this.setState({
-      ...this.state, weather: this.props.weatherSI, 
-      unitType: "Metric"
-  })
-}
 
   render() {
-    const {position, weatherSI } = this.props;
-    if(!window.navigator) {
+      const {
+        position,
+        weatherSI,
+        searchForPosition
+      } = this.props;
+
+      if (!window.navigator) {
         return (
             <div className="container bg-danger text-light">
                 <h1>It appears your browser does not support the Geolocation-API</h1>
@@ -54,14 +61,9 @@ convertUnits = () => {
                  <p>Please hold while we're acquiring your position</p>
              </div>
             )
-        } else if(position === "NA") {
-            return (
-                <div className="container bg-danger text-light">
-                <h1>FAILED TO RETRIEVE USER LOCATION ART GOES HERE</h1>
-                <p>We're having trouble locating your current position. This might have to do with your browser settings or perhaps you're not interested in the weather where you are.</p>
-            </div>
-        )
-    } else if(weatherSI === "") {
+        } 
+      
+    else if(weatherSI === "") {
         return(
             <div className="container bg-primary text-light">
                 <h1>LOADING WEATHER</h1>
@@ -75,10 +77,20 @@ convertUnits = () => {
       )
      } else {
        const { weather, unitType } = this.state;
+       const { queryLocationHits, getWeather, position } = this.props;
         return (
           <div>
-            <Header unitType={unitType} convertUnits={this.convertUnits}/>
-            <Main unitType={unitType} weather={weather}/>
+            <Header 
+            position = { position }
+            unitType = {  unitType } 
+            convertUnits = { this.convertUnits } 
+            searchForPosition = { searchForPosition }
+            queryLocationHits = { queryLocationHits }
+            getWeather = { getWeather }
+            />
+            <Main 
+            unitType = { unitType } 
+            weather = { weather } />
             <Footer />
         </div>
     )}}
