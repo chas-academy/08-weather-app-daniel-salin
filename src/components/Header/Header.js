@@ -64,15 +64,17 @@ export default class Header extends React.Component {
 			? (
 		<div className="container">
 				<h5>Match found!
-					<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample"></i>
+					<button  className="btn" data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
+					<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"></i>
+					</button>
 				</h5>
 <div className="collapse mb-2" id="search-results">
   <div className="card card-body">
   <h5>Did you mean...</h5>
-					<ul style={{listStyleType: "none"}}>
+					<ul className="p-0 m-0" style={{listStyleType: "none"}}>
 						{queryLocationHits.map(hit => {
 							return (
-							<li key={hit.address} className="d-inline-flex ml-2 mb-2 badge badge-primary" onClick={(e) =>this.handleClick(e, hit)}> <p className="p-1 m-0">{hit.city}?</p></li>
+							<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> <p className="text-truncate p-1 m-0">{hit.city}?</p></li>
 							)
 						})}
 					</ul>
