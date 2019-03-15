@@ -5,8 +5,10 @@ import './App.css';
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer"
+import WeatherIcon from "../WeatherIcon/WeatherIcon";
 
 import withApiCalls from "../../HOC/withApiCalls";
+
 
 class App extends Component {
   constructor(props) {
@@ -75,6 +77,7 @@ class App extends Component {
         return(
             <div className="container bg-primary text-light">
                 <h1>LOADING WEATHER</h1>
+                <WeatherIcon />
             </div>
         )
      } else if(this.state.weather === "") {
@@ -85,7 +88,7 @@ class App extends Component {
       )
      } else {
        const { weather, unitType } = this.state;
-       const { queryLocationHits, getWeather, position, loading } = this.props;
+       const { queryLocationHits, getWeather, position, loading, geoLocation } = this.props;
         return (
           <div>
             <Header 
@@ -93,6 +96,7 @@ class App extends Component {
             unitType = {  unitType } 
             convertUnits = { this.convertUnits } 
             searchForPosition = { searchForPosition }
+            geoLocation = { geoLocation }
             queryLocationHits = { queryLocationHits }
             getWeather = { getWeather }
             loading = { loading }

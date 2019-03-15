@@ -196,7 +196,7 @@ const withApiCalls = (WrappedComponent) => {
 				weatherSI,
 				weatherUS,
 				queryLocationHits,
-				loading
+				loading,
 			} = this.state;
 			return ( < WrappedComponent {
 					...this.props
@@ -212,6 +212,9 @@ const withApiCalls = (WrappedComponent) => {
 				}
 				searchForPosition = {
 					this.searchForPosition
+				}
+				geoLocation = {
+					this.geoLocation
 				}
 				queryLocationHits = {
 					queryLocationHits

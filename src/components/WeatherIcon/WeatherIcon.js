@@ -8,7 +8,7 @@ export default class WeatherIcon extends React.Component {
     this.ref = React.createRef();
   }
 
-  selectIcon = (iconDescription) => {
+  selectIcon = (iconDescription = "clear-day") => {
     switch (iconDescription) {
         case "clear-day":
             return Skycons.CLEAR_DAY
@@ -38,16 +38,19 @@ export default class WeatherIcon extends React.Component {
   render() {
     return (
       <div className="App">
-        { (this.props.size === "large") ? 
-        <div>
-        <canvas ref={this.ref} width="80" height="80" />
-        <h5>{this.props.desc}</h5>
-        </div>
-        :
-        <div>
-          <canvas ref={this.ref} width="40" height="40" />
-          <p>{this.props.desc}</p>
-        </div>
+        { 
+          (this.props.size === "large") 
+          ? ( <div>
+                <canvas ref={this.ref} width="80" height="80" />
+                <h5>{this.props.desc}</h5>
+              </div> )
+          : (this.props.size === "small") 
+          ? ( <div>
+                <canvas ref={this.ref} width="40" height="40" />
+                <p>{this.props.desc}</p>
+             </div> )
+          : <canvas ref={this.ref} width="300" height="300" />
+
       }
       </div>
     );

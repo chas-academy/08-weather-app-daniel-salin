@@ -31,6 +31,7 @@ export default class Header extends React.Component {
 					convertUnits,
 					unitType,
 					searchForPosition,
+					geoLocation,
 					position,
 					loading
 				} = this.props;
@@ -58,8 +59,10 @@ export default class Header extends React.Component {
 				</button>
 			</nav>
 			<div className="bg-secondary text-light text-center p-1"><h5 className="m-0 p-0">{position.address}</h5></div>
-			<SearchPosition searchForPosition={searchForPosition} loading={loading}/>
-			
+			<SearchPosition 
+			searchForPosition={searchForPosition} 
+			geoLocation={geoLocation}
+			loading={loading}/>
 			{(queryLocationHits !== "") 
 			? (
 		<div className="container">
@@ -71,13 +74,15 @@ export default class Header extends React.Component {
 <div className="collapse mb-2" id="search-results">
   <div className="card card-body">
   <h5>Did you mean...</h5>
-					<ul className="p-0 m-0" style={{listStyleType: "none"}}>
-						{queryLocationHits.map(hit => {
-							return (
-							<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> <p className="text-truncate p-1 m-0">{hit.city}?</p></li>
-							)
-						})}
-					</ul>
+		<ul className="p-0 m-0" style={{listStyleType: "none"}}>
+			{queryLocationHits.map(hit => {
+				return (
+				<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
+					<p className="text-truncate p-1 m-0">{hit.city}?</p>
+				</li>
+				)
+			})}
+		</ul>
   </div>
 </div>
 				</div>

@@ -32,9 +32,10 @@ export default class SearchPosition extends React.Component {
     const input = document.querySelector('input');
     this.props.searchForPosition(input.value);
   }
-
-  useMyPosition = ()=> {
-    console.log("works");
+  
+  useMyPosition = (e) => {
+    e.preventDefault();
+    this.props.geoLocation();
   }
   
 render() {
