@@ -1,18 +1,64 @@
 import React from 'react'
+import { PacmanLoader } from 'react-spinners';
+import { css } from "@emotion/core";
 
-export default function SearchPosition(props) {
-  const handleSubmit = (e) => {
+export default class SearchPosition extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    }
+  }
+  
+	componentDidUpdate(prevProps) {
+    if (this.props.loading !== prevProps.loading) {
+      this.setState({
+        ...this.state,
+        loading: this.props.loading
+      });
+    }
+  }
+  
+  loadingStyle = css`
+    position: absolute;
+    background: white;
+    display: inline-block;
+    margin: 0 auto;
+    border-color: red;
+  `;
+
+  handleSubmit = (e) => {
     e.preventDefault();
     const input = document.querySelector('input');
-    props.searchForPosition(input.value);
+    this.props.searchForPosition(input.value);
   }
 
+  useMyPosition = ()=> {
+    console.log("works");
+  }
+  
+render() {
   return (
-    <div className="container p-2">
-      <form className="" onSubmit={handleSubmit}>
-          <input type="text" autoComplete="off" placeholder="Search by city" required/>
-          <button className="btn btn-primary mx-2" type="submit">Search</button>
-      </form>
+    <div className="container py-2">
+      <div className="row">
+        <form className="p-2" onSubmit={this.handleSubmit}>
+            <input type="text" autoComplete="off" placeholder="Search by city" required/>
+            <button className="btn" type="submit">
+        <i className="fas fa-2x fa-search-location"></i>        
+            </button>
+        </form>
+            <button className="btn" onClick={this.useMyPosition}>
+        <i className="far fa-2x fa-compass"></i>
+            </button>
+        <PacmanLoader 
+        css={this.loadingStyle}
+        size={20}
+        color={"#3165e0"}   
+        loading={this.state.loading}
+        />    
+      </div>
     </div>
   )
+
+}
 }

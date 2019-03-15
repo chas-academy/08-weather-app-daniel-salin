@@ -9,17 +9,18 @@ export default function PrognosisDaily(props) {
 	return (
 		<section>
 			<CurrentWeather unitType={unitType} weather={weather.currently}/>
-				<div className="bg-secondary text-light">
-					<h4 className="p-2 bg-warning text-dark text-center">{weather.hourly.summary}</h4>
-					<table className="table p-3">
+					<h5 className="p-2 m-0 bg-warning text-dark text-center">{weather.hourly.summary}</h5>
+				<div className="p-2 bg-secondary text-light mx-auto" style={{overflowX:"scroll"}}>
+					<table className="table">
 						<thead>
 							<tr className="text-center">
-								<th scope="col">Hour</th>
-								<th scope="col">Weather</th>
-								<th scope="col">Description</th>
-								<th scope="col">Temperature</th>
-								<th scope="col">Apparent temperature</th>
-								<th scope="col">Humidity</th>
+								<th>Time</th>
+								<th>Desc.</th>
+								<th>Temperature</th>
+								<th>Feels</th>
+								<th>Humidity</th>
+								<th>Percip</th>
+								<th>Wind</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -35,11 +36,12 @@ export default function PrognosisDaily(props) {
 											<span className="mx-auto">{new Date(hour.time*1000).toLocaleDateString(navigator.language,{ weekday: 'short'})}</span>
 											</div>
 										</td>
-										<td><WeatherIcon size="small" icon={hour.icon} /></td>
-										<td>{hour.summary}</td>
+										<td><WeatherIcon desc={hour.summary} size="small" icon={hour.icon} /></td>
 										<td>{hour.temperature}{(unitType==="Metric")? "°C" : "°F"}</td>
 										<td>{hour.apparentTemperature}{(unitType==="Metric")? "°C" : "°F"}</td>
 										<td>{(hour.humidity*100).toFixed(0)}%</td>
+										<td>{(hour.precipProbability*100).toFixed(0)}%</td>
+										<td>{hour.windSpeed} {(unitType==="Metric")? "m/s" : "mph"}</td>
 									</tr>);
 								} else {
 										return null;

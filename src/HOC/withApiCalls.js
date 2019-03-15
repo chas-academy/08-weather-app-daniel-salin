@@ -8,7 +8,8 @@ const withApiCalls = (WrappedComponent) => {
 				queryLocationHits: "",
 				position: "",
 				weatherSI: "",
-				weatherUS: ""
+				weatherUS: "",
+				loading: false
 			}
 			this.geoLocation = this.geoLocation.bind(this);
 			this.getWeather = this.getWeather.bind(this);
@@ -27,7 +28,7 @@ const withApiCalls = (WrappedComponent) => {
 		geoLocation() {
 			const options = {
 				enableHighAccuracy: true,
-				timeout: 4000,
+				timeout: 5000,
 				maximumAge: 0
 			};
 			if (window.navigator.geolocation) {
@@ -42,7 +43,6 @@ const withApiCalls = (WrappedComponent) => {
 					this.setState({
 						...this.state,
 						position: fetchedPosition
-
 					});
 					this.getWeather("units=si", null);
 					this.getWeather("units=us", null);
@@ -79,8 +79,10 @@ const withApiCalls = (WrappedComponent) => {
 							address: data.results[0].formatted
 						}
 					})
+					return true
 				})
 				.catch(error => console.log("There was an error: ", error.message));
+
 		}
 
 		searchForPosition = (searchTerm, coords) => {
@@ -136,6 +138,10 @@ const withApiCalls = (WrappedComponent) => {
 		*/
 
 		getWeather = (selectedUnit, queryPosition) => {
+			this.setState({
+				...this.state,
+				loading: true
+			});
 			// API call options
 			const devCorsProxy = "https://cors-anywhere.herokuapp.com";
 			const baseUrl = "https://api.darksky.net";
@@ -161,6 +167,7 @@ const withApiCalls = (WrappedComponent) => {
 
 			//fetch data
 			const url = `${devCorsProxy}/${baseUrl}/${parameters}/${darkskyApiKey}/${latitude},${longitude}?${units}`;
+			console.log(url);
 			fetch(url).then(response => {
 					if (response.ok) {
 						return response.json();
@@ -172,10 +179,12 @@ const withApiCalls = (WrappedComponent) => {
 					(units === "units=si") ?
 					this.setState({
 						...this.state,
-						weatherSI: data
+						weatherSI: data,
+						loading: "complete"
 					}): this.setState({
 						...this.state,
-						weatherUS: data
+						weatherUS: data,
+						loading: "complete"
 					})
 				})
 				.catch(error => console.log("There was an error: ", error.message));
@@ -186,10 +195,10 @@ const withApiCalls = (WrappedComponent) => {
 				position,
 				weatherSI,
 				weatherUS,
-				queryLocationHits
+				queryLocationHits,
+				loading
 			} = this.state;
-			return ( <WrappedComponent 
-				{
+			return ( < WrappedComponent {
 					...this.props
 				}
 				position = {
@@ -209,6 +218,9 @@ const withApiCalls = (WrappedComponent) => {
 				}
 				getWeather = {
 					this.getWeather
+				}
+				loading = {
+					loading
 				}
 				/>
 			)

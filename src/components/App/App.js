@@ -62,6 +62,14 @@ class App extends Component {
              </div>
             )
         } 
+   else if(position === "NA") {
+         return ( 
+             <div className="container bg-danger text-light">
+             <h1>FAILED TO ACQUIRE POSITION</h1>
+                 <p>Please hold while we're acquiring your position</p>
+             </div>
+            )
+        } 
       
     else if(weatherSI === "") {
         return(
@@ -77,7 +85,7 @@ class App extends Component {
       )
      } else {
        const { weather, unitType } = this.state;
-       const { queryLocationHits, getWeather, position } = this.props;
+       const { queryLocationHits, getWeather, position, loading } = this.props;
         return (
           <div>
             <Header 
@@ -87,6 +95,7 @@ class App extends Component {
             searchForPosition = { searchForPosition }
             queryLocationHits = { queryLocationHits }
             getWeather = { getWeather }
+            loading = { loading }
             />
             <Main 
             unitType = { unitType } 

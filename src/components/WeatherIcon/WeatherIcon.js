@@ -5,7 +5,6 @@ const Skycons = require("skycons")(window);
 export default class WeatherIcon extends React.Component {
   constructor(props) {
     super(props);
-
     this.ref = React.createRef();
   }
 
@@ -39,18 +38,24 @@ export default class WeatherIcon extends React.Component {
   render() {
     return (
       <div className="App">
-        { (this.props.size === "large") ?
-        <canvas ref={this.ref} width="100" height="100" />
+        { (this.props.size === "large") ? 
+        <div>
+        <canvas ref={this.ref} width="80" height="80" />
+        <h5>{this.props.desc}</h5>
+        </div>
         :
-        <canvas ref={this.ref} width="64" height="64" />
-        }
+        <div>
+          <canvas ref={this.ref} width="40" height="40" />
+          <p>{this.props.desc}</p>
+        </div>
+      }
       </div>
     );
   }
 
   componentDidMount() {
     const selectedIcon = this.selectIcon(this.props.icon);
-    const skycons = new Skycons ({ color: "white" });
+    const skycons = new Skycons ({ color: "black" });
     skycons.add(this.ref.current, selectedIcon);
     skycons.play();
   }
