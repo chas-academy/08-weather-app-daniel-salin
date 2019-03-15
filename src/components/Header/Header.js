@@ -59,10 +59,16 @@ export default class Header extends React.Component {
 			</nav>
 			<div className="bg-secondary text-light text-center p-1"><h5 className="m-0 p-0">{position.address}</h5></div>
 			<SearchPosition searchForPosition={searchForPosition} loading={loading}/>
+			
 			{(queryLocationHits !== "") 
 			? (
-				<div className="container">
-					<h5>Did you mean...</h5>
+		<div className="container">
+				<h5>Match found!
+					<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample"></i>
+				</h5>
+<div className="collapse mb-2" id="search-results">
+  <div className="card card-body">
+  <h5>Did you mean...</h5>
 					<ul style={{listStyleType: "none"}}>
 						{queryLocationHits.map(hit => {
 							return (
@@ -70,6 +76,8 @@ export default class Header extends React.Component {
 							)
 						})}
 					</ul>
+  </div>
+</div>
 				</div>
 			)
 			: null
