@@ -31,7 +31,7 @@ export default class NoPosition extends React.Component {
     render() { 
       const { searchForPosition, geoLocation, loading, queryLocationHits } = this.props;
     return (
-      <div className="container pt-3 mt-3 mx-auto bg-danger text-light">
+      <div className="jumbotron pt-3 bg-danger text-light">
                <WeatherIcon size="small" />
              <h1>Welcome to my weather app!</h1>
              <p>So... It turns out you either turned off the location-service or your browser doesn't support this feature. 
@@ -44,7 +44,7 @@ export default class NoPosition extends React.Component {
 				? (
 					<div className="container">
 						<h5>Match found!
-						<button  className="btn" style={{background:"none"}} data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
+						<button className="btn" style={{background:"none"}} data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
 						<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"></i>
 						</button>
 						</h5>
@@ -53,8 +53,8 @@ export default class NoPosition extends React.Component {
   						<h5>Did you mean...</h5>
 							<ul className="p-0 m-0" style={{listStyleType: "none"}}>
 							{queryLocationHits.map(hit => {
-								return (
-								<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
+              	return (
+								<li key={hit.city} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
 									<p className="text-truncate p-1 m-0">{hit.city}?</p>
 								</li>
 								)

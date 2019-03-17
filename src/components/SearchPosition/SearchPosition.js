@@ -30,7 +30,7 @@ export default class SearchPosition extends React.Component {
   
 render() {
   return (
-    <div className="container py-2">
+    <div className="container m-0">
       <div className="row">
         <form className="p-2" onSubmit={this.handleSubmit}>
             <input type="text" autoComplete="off" placeholder="Search by city" required/>

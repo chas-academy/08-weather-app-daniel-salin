@@ -44,8 +44,8 @@ const withApiCalls = (WrappedComponent) => {
 						...this.state,
 						position: fetchedPosition
 					});
-					this.getWeather("units=si", null);
-					this.getWeather("units=us", null);
+					const fetchArray = [this.getWeather("units=si", null), this.getWeather("units=us", null)];
+					Promise.all(fetchArray);
 				}, (error) => {
 					this.setState({
 						...this.state,
@@ -167,7 +167,6 @@ const withApiCalls = (WrappedComponent) => {
 
 			//fetch data
 			const url = `${devCorsProxy}/${baseUrl}/${parameters}/${darkskyApiKey}/${latitude},${longitude}?${units}`;
-			console.log(url);
 			fetch(url).then(response => {
 					if (response.ok) {
 						return response.json();

@@ -14,7 +14,6 @@ export default function Prognosis(props) {
 			<h4 className="p-2 bg-warning text-center">{daily.summary}</h4>
 			<div className="row p-3">
 				{daily.data.map(day => {
-          
 					const currentDate = new Date(day.time*1000).toLocaleDateString(navigator.language,{
 						weekday: 'long',
 						year: 'numeric',
@@ -29,7 +28,6 @@ export default function Prognosis(props) {
 						hour: '2-digit',
 						minute:'2-digit'
           });
-         
           if(daily.data.indexOf(day) < 5 && prognosisType === "fiveDay") {
           return (
             <PrognosisCard key={day.time} day={day} currentDate={currentDate} sunsetTime={sunsetTime} sunriseTime={sunriseTime} unitType={unitType}/>
@@ -37,6 +35,8 @@ export default function Prognosis(props) {
               return (
                 <PrognosisCard key={day.time} day={day} currentDate={currentDate} sunsetTime={sunsetTime} sunriseTime={sunriseTime} unitType={unitType}/>
             )
+          } else {
+            return null;
           }
         }  
 			)}
