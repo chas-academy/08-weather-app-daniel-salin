@@ -1,11 +1,11 @@
 import React from "react";
 
-import WeatherIcon from "../WeatherIcon/WeatherIcon";
 import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import PrognosisCard from "../PrognosisCard/PrognosisCard";
 
 export default function Prognosis(props) {
 	const { daily, currently } = props.weather;
-	const  { unitType, prognosisType } = props;
+  const  { unitType, prognosisType } = props;
   
   return (
 		<section>
@@ -29,32 +29,13 @@ export default function Prognosis(props) {
 						hour: '2-digit',
 						minute:'2-digit'
           });
+         
           if(daily.data.indexOf(day) < 5 && prognosisType === "fiveDay") {
           return (
-						<div key ={day.time.toString()} className="col-lg-3 col-md-6 col-sm-12"> 
-						<div style={{minHeight:"410px"}} className="card w-100 m-1 bg-info p-2">
-							<p>{day.summary}</p>
-							<p>Humidity: {(day.humidity*100).toFixed(0)}%</p>
-							<p>Temperature High: {day.temperatureHigh}{(unitType==="Metric")? "°C" : "°F"}</p>
-							<p>Temperature Low: {day.temperatureLow}{(unitType==="Metric")? "°C" : "°F"}</p>
-							<p>Sunrise: {sunriseTime}</p>
-							<p>Sunset: {sunsetTime}</p>
-							<WeatherIcon size="small" icon={day.icon}/>
-						</div>
-						</div>
-          )} else if (prognosisType === "week") {
-            return (
-              <div key ={day.time.toString()} className="col-lg-3 col-md-6 col-sm-12"> 
-              <div style={{minHeight:"410px"}} className="card w-100 m-1 bg-info p-2">
-                <p>{day.summary}</p>
-                <p>Humidity: {(day.humidity*100).toFixed(0)}%</p>
-                <p>Temperature High: {day.temperatureHigh}{(unitType==="Metric")? "°C" : "°F"}</p>
-                <p>Temperature Low: {day.temperatureLow}{(unitType==="Metric")? "°C" : "°F"}</p>
-                <p>Sunrise: {sunriseTime}</p>
-                <p>Sunset: {sunsetTime}</p>
-                <WeatherIcon size="small" icon={day.icon}/>
-              </div>
-              </div>
+            <PrognosisCard key={day.time} day={day} currentDate={currentDate} sunsetTime={sunsetTime} sunriseTime={sunriseTime} unitType={unitType}/>
+            )} else if (prognosisType === "week") {
+              return (
+                <PrognosisCard key={day.time} day={day} currentDate={currentDate} sunsetTime={sunsetTime} sunriseTime={sunriseTime} unitType={unitType}/>
             )
           }
         }  
