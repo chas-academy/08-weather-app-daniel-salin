@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer"
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
 
 import withApiCalls from "../../HOC/withApiCalls";
+import NoPosition from '../NoPosition/NoPosition';
 
 
 class App extends Component {
@@ -44,51 +45,35 @@ class App extends Component {
   }
 
   render() {
-      const {
-        position,
-        weatherSI,
-        searchForPosition
+    const { weather, unitType } = this.state;
+    const {
+      queryLocationHits, 
+      getWeather, 
+      loading,
+      position,
+      weatherSI,
+      searchForPosition,
+      geoLocation
       } = this.props;
 
-      if (!window.navigator) {
-        return (
-            <div className="container bg-danger text-light">
-                <h1>It appears your browser does not support the Geolocation-API</h1>
-            </div>
-        )
-    } else if(position === "") {
-         return ( 
-             <div className="container bg-primary text-light">
-             <h1>LOADING ART GOES HERE</h1>
-                 <p>Please hold while we're acquiring your position</p>
-             </div>
-            )
-        } 
-   else if(position === "NA") {
-         return ( 
-             <div className="container bg-danger text-light">
-             <h1>FAILED TO ACQUIRE POSITION</h1>
-                 <p>Please hold while we're acquiring your position</p>
-             </div>
-            )
-        } 
-      
-    else if(weatherSI === "") {
-        return(
-            <div className="container bg-primary text-light">
-                <h1>LOADING WEATHER</h1>
-                <WeatherIcon />
-            </div>
-        )
-     } else if(this.state.weather === "") {
+    if (!window.navigator || position === "NA") {
       return (
-        <div className="container bg-primary text-light">
-          <h1>CORRECTING STATE</h1>
+        <NoPosition 
+        searchForPosition={searchForPosition} 
+        geoLocation={geoLocation} 
+        queryLocationHits = { queryLocationHits }
+        loading={loading} 
+        getWeather={getWeather}
+        />
+      )
+    } 
+    else if(weatherSI === "") {
+      return(
+        <div className="container mx-auto p-5">
+          <WeatherIcon />
         </div>
       )
      } else {
-       const { weather, unitType } = this.state;
-       const { queryLocationHits, getWeather, position, loading, geoLocation } = this.props;
         return (
           <div>
             <Header 

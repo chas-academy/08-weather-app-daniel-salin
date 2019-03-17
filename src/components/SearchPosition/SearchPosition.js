@@ -44,11 +44,11 @@ render() {
       <div className="row">
         <form className="p-2" onSubmit={this.handleSubmit}>
             <input type="text" autoComplete="off" placeholder="Search by city" required/>
-            <button className="btn" type="submit">
+            <button className="btn" style={{background:"none"}} type="submit">
         <i className="fas fa-2x fa-search-location"></i>        
             </button>
         </form>
-            <button className="btn" onClick={this.useMyPosition}>
+            <button className="btn" style={{background:"none"}} onClick={this.useMyPosition}>
         <i className="far fa-2x fa-compass"></i>
             </button>
         <PacmanLoader 
