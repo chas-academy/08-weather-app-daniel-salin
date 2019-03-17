@@ -1,6 +1,4 @@
 import React from 'react'
-import { PacmanLoader } from 'react-spinners';
-import { css } from "@emotion/core";
 
 export default class SearchPosition extends React.Component {
   constructor(props) {
@@ -19,14 +17,6 @@ export default class SearchPosition extends React.Component {
     }
   }
   
-  loadingStyle = css`
-    position: absolute;
-    background: white;
-    display: inline-block;
-    margin: 0 auto;
-    border-color: red;
-  `;
-
   handleSubmit = (e) => {
     e.preventDefault();
     const input = document.querySelector('input');
@@ -51,12 +41,6 @@ render() {
             <button className="btn" style={{background:"none"}} onClick={this.useMyPosition}>
         <i className="far fa-2x fa-compass"></i>
             </button>
-        <PacmanLoader 
-        css={this.loadingStyle}
-        size={20}
-        color={"#3165e0"}   
-        loading={this.state.loading}
-        />    
       </div>
     </div>
   )

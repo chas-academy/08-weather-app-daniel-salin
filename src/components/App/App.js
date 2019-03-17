@@ -67,7 +67,7 @@ class App extends Component {
         />
       )
     } 
-    else if(weatherSI === "") {
+    else if(weatherSI === "" || this.state.weather === "") {
       return(
         <div className="container mx-auto p-5">
           <WeatherIcon />
