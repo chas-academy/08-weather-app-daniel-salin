@@ -1,0 +1,11 @@
+.card-custom {
+  min-height: "420px";
+}
+
+.card-body-custom {
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(63,140,205,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+h5 , p > span {
+  font-weight: bold;
+}

@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./PrognosisDaily.css"
+
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
 import CurrentWeather from "../CurrentWeather/CurrentWeather";
 
@@ -7,10 +9,10 @@ export default function PrognosisDaily(props) {
 	const { weather, unitType } = props;
 
 	return (
-		<section>
+		<section className="pb-3">
 			<CurrentWeather unitType={unitType} weather={weather.currently}/>
 					<h5 className="p-2 m-0 bg-warning text-dark text-center">{weather.hourly.summary}</h5>
-				<div className="p-2 bg-secondary text-light mx-auto" style={{overflowX:"scroll"}}>
+				<div className="p-2 bg-secondary text-light mx-auto table-container">
 					<table className="table">
 						<thead>
 							<tr className="text-center">
@@ -36,7 +38,7 @@ export default function PrognosisDaily(props) {
 											<span className="mx-auto">{new Date(hour.time*1000).toLocaleDateString(navigator.language,{ weekday: 'short'})}</span>
 											</div>
 										</td>
-										<td><WeatherIcon desc={hour.summary} size="small" icon={hour.icon} /></td>
+										<td className="pb-0"><WeatherIcon desc={hour.summary} size="small" icon={hour.icon} /></td>
 										<td>{hour.temperature}{(unitType==="Metric")? "°C" : "°F"}</td>
 										<td>{hour.apparentTemperature}{(unitType==="Metric")? "°C" : "°F"}</td>
 										<td>{(hour.humidity*100).toFixed(0)}%</td>

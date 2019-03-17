@@ -1,0 +1,8 @@
+.match-badge {
+  cursor: pointer;
+  max-width: 245px;
+}
+
+ul {
+  list-style-type: none;
+}

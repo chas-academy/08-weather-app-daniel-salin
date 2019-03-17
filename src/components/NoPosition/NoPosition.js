@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import './NoPosition.css';
 
 import SearchPosition from "../SearchPosition/SearchPosition";
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
@@ -44,17 +46,17 @@ export default class NoPosition extends React.Component {
 				? (
 					<div className="container">
 						<h5>Match found!
-						<button className="btn" style={{background:"none"}} data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
+						<button className="btn" style={{background: "none"}}data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
 						<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"></i>
 						</button>
 						</h5>
 					<div className="collapse mb-2" id="search-results">
-  					<div className="card card-body text-dark m-2">
+  					<div className="card card-body text-dark px-1">
   						<h5>Did you mean...</h5>
-							<ul className="p-0 m-0" style={{listStyleType: "none"}}>
+							<ul className="p-0 m-0">
 							{queryLocationHits.map(hit => {
               	return (
-								<li key={hit.city} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
+								<li key={hit.city} className="d-inline-flex ml-1 mb-2 badge badge-primary match-badge" onClick={(e) =>this.handleClick(e, hit)}> 
 									<p className="text-truncate p-1 m-0">{hit.city}?</p>
 								</li>
 								)

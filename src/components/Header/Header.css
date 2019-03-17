@@ -1,0 +1,22 @@
+.metric-button {
+  position: "absolute";
+  top: "8px";
+  right: "16px"
+}
+
+.match-badge {
+  cursor: pointer;
+  max-width:"250px"
+}
+
+nav {
+  position:"relative";
+}
+
+ul {
+  list-style-type: "none";
+}
+
+.search-btn {
+  background:"none";
+}

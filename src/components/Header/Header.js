@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchPosition from '../SearchPosition/SearchPosition';
+import "./Header.css";
 
 export default class Header extends React.Component {
 	constructor(props) {
@@ -43,7 +44,7 @@ export default class Header extends React.Component {
 
 				return (
 		<header>
-			<nav style={{position:"relative"}}className="navbar navbar-expand-lg navbar-dark bg-dark">
+			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
 				</button>
@@ -60,7 +61,7 @@ export default class Header extends React.Component {
 						</li>
 					</ul>
 				</div>
-				<button style={{position: "absolute", top:"8px", right:"16px"}} className="btn btn-primary btn-sm" onClick={convertUnits}>
+				<button className="btn btn-primary btn-sm metric-button" onClick={convertUnits}>
 								{(unitType==="Metric") ? "To American" : "To Metric"}
 				</button>
 			</nav>
@@ -73,17 +74,17 @@ export default class Header extends React.Component {
 				? (
 					<div className="container">
 						<h5>Match found!
-						<button  className="btn" data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
+						<button  className="btn search-btn" data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
 						<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"></i>
 						</button>
 						</h5>
 					<div className="collapse mb-2" id="search-results">
   					<div className="card card-body">
   						<h5>Did you mean...</h5>
-							<ul className="p-0 m-0" style={{listStyleType: "none"}}>
+							<ul className="p-0 m-0">
 							{queryLocationHits.map(hit => {
 								return (
-								<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
+								<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary match-badge" onClick={(e) =>this.handleClick(e, hit)}> 
 									<p className="text-truncate p-1 m-0">{hit.city}?</p>
 								</li>
 								)

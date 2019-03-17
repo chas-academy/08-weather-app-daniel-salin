@@ -1,24 +1,22 @@
 import React from 'react'
+import "./PrognosisCard.css"
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
 
 export default function PrognosisCard(props) {
   const { day, sunriseTime, sunsetTime, unitType, currentDate} = props;
-  const cardStyle = {
-    background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(63,140,205,1) 0%, rgba(0,212,255,1) 100%)"
-  }
 
   return (
     <div key ={day.time.toString()} className="col-lg-3 col-md-6 col-sm-12"> 
-    <div style={{minHeight:"410px"}} className="card w-100 m-1 pt-3">
+    <div className="card card-custom w-100 m-1 pt-3">
       <WeatherIcon size="large" icon={day.icon}/>
-      <div style={cardStyle} className="card-body m-0">
-      <h5 style={{fontWeight:"bold"}}>{currentDate}</h5>
+      <div className="card-body card-body-custom m-0">
+      <h5>{currentDate}</h5>
         <p><em>{day.summary}</em></p>
-        <p><span style={{fontWeight:"bold"}}>Humidity: </span>{(day.humidity*100).toFixed(0)}%</p>
-        <p><span style={{fontWeight:"bold"}}>Temperature(high): </span>{day.temperatureHigh}{(unitType==="Metric")? "°C" : "°F"}</p>
-        <p><span style={{fontWeight:"bold"}}>Temperature(low): </span>{day.temperatureLow}{(unitType==="Metric")? "°C" : "°F"}</p>
-        <p><span style={{fontWeight:"bold"}}>Sunrise: </span>{sunriseTime}</p>
-        <p><span style={{fontWeight:"bold"}}>Sunset: </span>{sunsetTime}</p>
+        <p><span>Humidity: </span>{(day.humidity*100).toFixed(0)}%</p>
+        <p><span>Temperature(high): </span>{day.temperatureHigh}{(unitType==="Metric")? "°C" : "°F"}</p>
+        <p><span>Temperature(low): </span>{day.temperatureLow}{(unitType==="Metric")? "°C" : "°F"}</p>
+        <p><span>Sunrise: </span>{sunriseTime}</p>
+        <p><span>Sunset: </span>{sunsetTime}</p>
       </div>
     </div>
   </div>

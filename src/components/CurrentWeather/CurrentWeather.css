@@ -1,0 +1,12 @@
+.info-bit { 
+  font-size: 2em;
+  align-self: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li span {
+  font-weight: bold;
+}
