@@ -12,11 +12,11 @@ export default function PrognosisCard(props) {
     <div style={{minHeight:"410px"}} className="card w-100 m-1 pt-3">
       <WeatherIcon size="large" icon={day.icon}/>
       <div style={cardStyle} className="card-body m-0">
-      <h5>{currentDate}</h5>
+      <h5 style={{fontWeight:"bold"}}>{currentDate}</h5>
         <p><em>{day.summary}</em></p>
         <p><span style={{fontWeight:"bold"}}>Humidity: </span>{(day.humidity*100).toFixed(0)}%</p>
-        <p><span style={{fontWeight:"bold"}}>Temperature: </span>{day.temperatureHigh}{(unitType==="Metric")? "°C" : "°F"}</p>
-        <p><span style={{fontWeight:"bold"}}>Temperature: </span>{day.temperatureLow}{(unitType==="Metric")? "°C" : "°F"}</p>
+        <p><span style={{fontWeight:"bold"}}>Temperature(high): </span>{day.temperatureHigh}{(unitType==="Metric")? "°C" : "°F"}</p>
+        <p><span style={{fontWeight:"bold"}}>Temperature(low): </span>{day.temperatureLow}{(unitType==="Metric")? "°C" : "°F"}</p>
         <p><span style={{fontWeight:"bold"}}>Sunrise: </span>{sunriseTime}</p>
         <p><span style={{fontWeight:"bold"}}>Sunset: </span>{sunsetTime}</p>
       </div>
