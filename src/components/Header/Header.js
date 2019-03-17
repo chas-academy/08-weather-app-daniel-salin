@@ -19,6 +19,7 @@ export default class Header extends React.Component {
 				});
 			}
 		}
+
 		handleClick = (e, hit) => {
 			const { getWeather } = this.props;
 			e.preventDefault();
@@ -35,9 +36,11 @@ export default class Header extends React.Component {
 					position,
 					loading
 				} = this.props;
+
 				const {
 					queryLocationHits
 				} = this.state;
+
 				return (
 		<header>
 			<nav style={{position:"relative"}}className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -50,6 +53,9 @@ export default class Header extends React.Component {
 							<NavLink to="/today" className="text-light" activeStyle={{ fontWeight: "bold", color: "red"}}>Prognosis- today</NavLink>
 						</li>
 						<li className="nav-item px-3 pt-2">
+							<NavLink to="/five" className="text-light" activeStyle={{ fontWeight: "bold", color: "red"}}>Prognosis- 5 day</NavLink>
+						</li>
+						<li className="nav-item px-3 pt-2">
 							<NavLink to="/week" className="text-light" activeStyle={{ fontWeight: "bold", color: "red"}}>Prognosis- week</NavLink>
 						</li>
 					</ul>
@@ -59,32 +65,32 @@ export default class Header extends React.Component {
 				</button>
 			</nav>
 			<div className="bg-secondary text-light text-center p-1"><h5 className="m-0 p-0">{position.address}</h5></div>
-			<SearchPosition 
-			searchForPosition={searchForPosition} 
-			geoLocation={geoLocation}
-			loading={loading}/>
-			{(queryLocationHits !== "") 
-			? (
-		<div className="container">
-				<h5>Match found!
-					<button  className="btn" data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
-					<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"></i>
-					</button>
-				</h5>
-<div className="collapse mb-2" id="search-results">
-  <div className="card card-body">
-  <h5>Did you mean...</h5>
-		<ul className="p-0 m-0" style={{listStyleType: "none"}}>
-			{queryLocationHits.map(hit => {
-				return (
-				<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
-					<p className="text-truncate p-1 m-0">{hit.city}?</p>
-				</li>
-				)
-			})}
-		</ul>
-  </div>
-</div>
+				<SearchPosition 
+				searchForPosition={searchForPosition} 
+				geoLocation={geoLocation}
+				loading={loading}/>
+				{(queryLocationHits !== "") 
+				? (
+					<div className="container">
+						<h5>Match found!
+						<button  className="btn" data-toggle="collapse" data-target="#search-results" aria-expanded="true" aria-controls="collapseExample">
+						<i className="fas fa-lg fa-arrow-alt-circle-down mx-2"></i>
+						</button>
+						</h5>
+					<div className="collapse mb-2" id="search-results">
+  					<div className="card card-body">
+  						<h5>Did you mean...</h5>
+							<ul className="p-0 m-0" style={{listStyleType: "none"}}>
+							{queryLocationHits.map(hit => {
+								return (
+								<li key={hit.address} className="d-inline-flex ml-1 mb-2 badge badge-primary" style={{maxWidth:"250px"}} onClick={(e) =>this.handleClick(e, hit)}> 
+									<p className="text-truncate p-1 m-0">{hit.city}?</p>
+								</li>
+								)
+							})}
+							</ul>
+  					</div>
+					</div>
 				</div>
 			)
 			: null

@@ -2,7 +2,7 @@ import React from "react";
 import {  Switch, Route } from "react-router-dom";
 
 import PrognosisDaily from "../PrognosisDaily/PrognosisDaily";
-import PrognosisWeekly from "../PrognosisWeekly/PrognosisWeekly";
+import Prognosis from "../Prognosis/Prognosis";
 
 class Main extends React.Component {
 	render() {
@@ -12,7 +12,8 @@ class Main extends React.Component {
 					<Switch >
 						<Route exact path="/" render={() => <PrognosisDaily unitType={unitType} weather={weather}/>}/>
 						<Route path="/today" render={() => <PrognosisDaily unitType={unitType} weather={weather}/>}/>
-						<Route path="/week" render={() => <PrognosisWeekly unitType={unitType} weather={weather}/>}/>
+						<Route path="/five" render={() => <Prognosis prognosisType={"fiveDay"} unitType={unitType} weather={weather}/>}/>
+						<Route path="/week" render={() => <Prognosis prognosisType={"week"} unitType={unitType} weather={weather}/>}/>
 					</Switch>
 				</main>
 		)
